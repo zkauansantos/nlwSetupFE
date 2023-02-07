@@ -1,77 +1,33 @@
-import { Check } from 'phosphor-react';
-import close from '../../assets/icons/close.svg';
+import { Plus, X } from 'phosphor-react';
+import * as Dialog from '@radix-ui/react-dialog';
+import NewHabitForm from './NewHabitForm';
 
-interface ModalProps {
-  visible: boolean
-  onCloseModal(): void
-}
 
-export default function Modal ({ visible, onCloseModal } : ModalProps) {
-	const weekDays = [
-		'Domingo',
-		'Segunda',
-		'Terça',
-		'Quarta',
-		'Quinta',
-		'Sexta',
-		'Sábado',
-	];
-
-	if(!visible) {
-		return null;
-	}
-
+export default function Modal () {
 	return (
-		<div className="w-screen h-screen bg-bg-modal absolute top-0 left-0 text-black z-10 flex justify-center items-center">
-			<div className="min-w-w-modal min-h-h-modal bg-zinc-900 relative text-white px-10 py-10">
-				<button
-					className="absolute right-4 top-2 "
-					onClick={onCloseModal}
-				>
-					<img src={close} alt="close"/>
-				</button>
+		<Dialog.Root>
+			<Dialog.Trigger
+				type='button'
+				className='border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:border-violet-300'
+			>
+				<Plus size={20} className='text-violet-500' />
+        Novo hábito
+			</Dialog.Trigger>
 
-				<h1 className='font-bold text-large mb-6'>Criar hábito</h1>
+			<Dialog.Portal>
+				<Dialog.Overlay className='fixed inset-0 w-screen h-screen bg-black/60'/>
+				<Dialog.Content className='absolute p-10 bg-zinc-900 rounded-2xl w-full max-w-md top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'>
+					<Dialog.Close className=' top-6 right-6 absolute text-zinc-400 hover:text-zinc-200'>
+						<X size={24} aria-label="Fechar"/>
+					</Dialog.Close>
+					<Dialog.Title className='text-3xl leading-tight font-extrabold'>
+            Criar Hábito
+					</Dialog.Title>
 
-				<header className='mb-4'>
-					<strong className='mb-3 block'>Qual seu compromentimento ?</strong>
-					<input
-						className='bg-zinc-800 placeholder: text-zinc-400 border-2 rounded-lg border-none w-full p-4'
-						type="text"
-						placeholder='Exercícios, dormir bem, etc...' />
-				</header>
+					<NewHabitForm/>
 
-				<div>
-					<strong>Qual a recorrência?</strong>
-
-					<form>
-						{weekDays.map((day, i) => (
-							<div
-								className='mt-2 flex items-center'
-								key={`${day} - ${i}`}
-							>
-								<label htmlFor={day} className="flex items-center justify-center gap-3 relative">
-									<input
-										className='appearance-none border-2 border-zinc-800 rounded-md focus:outline-none checked:bg-green-500 p-3 '
-										type="checkbox"
-										name={day}
-										id={day}
-									/>
-									<Check className='absolute left-1.5' size={18}/>
-									{day}
-								</label>
-							</div>
-						))}
-
-						<button
-							className='w-full bg-green-600 p-3 mt-4 rounded-lg flex items-center justify-center gap-3'
-							type='submit'>
-							<Check size={20}/>
-              Confirmar
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
+				</Dialog.Content>
+			</Dialog.Portal>
+		</Dialog.Root>
 	);
 }
