@@ -1,6 +1,6 @@
 import { Plus, X } from 'phosphor-react';
 import * as Dialog from '@radix-ui/react-dialog';
-import NewHabitForm from './NewHabitForm';
+import NewHabitForm from '../NewHabitForm';
 
 
 export default function Modal () {
