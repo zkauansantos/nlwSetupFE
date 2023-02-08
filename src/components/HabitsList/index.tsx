@@ -7,10 +7,11 @@ import {  HabitsInfo } from '../../types/HabitsInfo';
 
 interface HabitListProps {
   date: Date
+  onCompletedChanged(completed: number): void
 }
 
 
-export default function HabitList ({ date }: HabitListProps) {
+export default function HabitList ({ date, onCompletedChanged }: HabitListProps) {
 	const [habitsInfo, setHabitsInfo] = useState<HabitsInfo>();
 	const dateIsPast = dayjs(date).endOf('day').isBefore(new Date());
 
@@ -44,6 +45,8 @@ export default function HabitList ({ date }: HabitListProps) {
 			...prevState!,
 			completedHabits,
 		}));
+
+		onCompletedChanged(completedHabits.length);
 	}
 
 
