@@ -56,11 +56,12 @@ export default function HabitList ({ date, onCompletedChanged }: HabitListProps)
 				<Checkbox.Root
 					onCheckedChange={() => handleToggleCheckChange(habit.id)}
 					key={habit.id}
-					className='flex items-center gap-3 group'
+					className='flex items-center gap-3 group focus:outline-none'
 					defaultChecked={habitsInfo.completedHabits.includes(habit.id)}
 					disabled={dateIsPast}
 				>
-					<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500  group-data-[state=checked]:border-green-900'>
+					<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500  group-data-[state=checked]:border-green-900 transition-colors group-focus:ring-2
+        group-focus: ring-violet-700 group-focus:ring-offset-2 group-focus:ring-offset-background'>
 						<Checkbox.Indicator>
 							<Check size={20} className='text-white'/>
 						</Checkbox.Indicator>

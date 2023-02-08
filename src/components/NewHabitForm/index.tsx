@@ -45,7 +45,8 @@ export default function NewHabitForm () {
 				id="title"
 				placeholder="Ex.: Exercícios, dormir bem, etc..."
 				autoFocus
-				className='p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400'
+				className='p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2
+        focus: ring-violet-700 focus:ring-offset-2 focus:ring-offset-zinc-800'
 				onChange={(e) => setTitle(e.target.value)}
 			/>
 
@@ -58,9 +59,14 @@ export default function NewHabitForm () {
 					<Checkbox.Root
 						key={day}
 						onCheckedChange={() => handleToggleCheckDay(index)}
-						className='flex items-center gap-3 group'
+						className='flex items-center gap-3 group focus:outline-none'
 					>
-						<div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500  group-data-[state=checked]:border-green-900'>
+						<div
+							className='
+              h-8 w-8 rounded-lg flex items-center justify-center
+             bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500
+             group-data-[state=checked]:border-green-900 transition-colors group-focus:ring-2
+             group-focus: ring-violet-700 group-focus:ring-offset-2 group-focus:ring-offset-background'>
 							<Checkbox.Indicator className=''>
 								<Check size={20} className='text-white'/>
 							</Checkbox.Indicator>
@@ -73,7 +79,10 @@ export default function NewHabitForm () {
 				))}
 			</div>
 
-			<button type="submit" className='mt-6 rounded-lg p-4 gap-3 flex items-center justify-center font-semibold bg-green-600 hover:bg-green-400'>
+			<button
+				type="submit"
+				className='mt-6 rounded-lg p-4 gap-3 flex items-center justify-center font-semibold bg-green-600 hover:bg-green-400 transition-colors focus:ring-2
+        focus: ring-green-600 focus:ring-offset-2 focus:ring-offset-zinc-800 focus:outline-none'>
 				<Check size={20} weight="bold" />
         Confirmar
 			</button>
